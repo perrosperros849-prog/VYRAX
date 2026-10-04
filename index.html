@@ -1,0 +1,3205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0c0f">
+<title>VYRA — Diseño web premium</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root{
+    --bg:#090a0d;
+    --bg2:#0f1115;
+    --card:#13151a;
+    --card2:#181b21;
+    --text:#f5f2ea;
+    --muted:#969aa4;
+    --line:rgba(255,255,255,.09);
+    --gold:#d6b878;
+    --gold2:#f0d89d;
+    --blue:#8299ad;
+    --white:#fffdf7;
+    --radius:24px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at 15% 5%,rgba(214,184,120,.08),transparent 30%),
+        radial-gradient(circle at 85% 20%,rgba(130,153,173,.07),transparent 28%),
+        var(--bg);
+    color:var(--text);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body.modal-open{
+    overflow:hidden;
+}
+
+button,a{
+    font:inherit;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    cursor:pointer;
+}
+
+.container{
+    width:min(1180px,calc(100% - 40px));
+    margin:auto;
+}
+
+/* ---------------- NAV ---------------- */
+
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    padding:18px 0;
+    transition:.3s;
+}
+
+.nav.scrolled{
+    background:rgba(9,10,13,.82);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+    width:min(1180px,calc(100% - 40px));
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-family:Manrope,sans-serif;
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.logo span{
+    color:var(--gold);
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+    color:#c9c9c6;
+    font-size:14px;
+}
+
+.nav-links a{
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:var(--gold2);
+}
+
+.nav-cta{
+    padding:11px 18px;
+    border:1px solid rgba(214,184,120,.4);
+    border-radius:100px;
+    color:var(--gold2);
+    font-size:13px;
+    transition:.3s;
+}
+
+.nav-cta:hover{
+    background:var(--gold);
+    color:#101010;
+}
+
+.menu-btn{
+    display:none;
+    background:none;
+    border:0;
+    color:white;
+    font-size:25px;
+}
+
+/* ---------------- HERO ---------------- */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    padding:140px 0 80px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:70px;
+    align-items:center;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    color:var(--gold2);
+    border:1px solid rgba(214,184,120,.25);
+    background:rgba(214,184,120,.05);
+    border-radius:100px;
+    padding:8px 13px;
+    font-size:12px;
+    margin-bottom:25px;
+}
+
+.dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 14px var(--gold);
+}
+
+.hero h1{
+    font-family:Manrope,sans-serif;
+    font-size:clamp(48px,7vw,86px);
+    line-height:.98;
+    letter-spacing:-4px;
+    max-width:750px;
+}
+
+.hero h1 em{
+    color:var(--gold2);
+    font-style:normal;
+}
+
+.hero p{
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.7;
+    max-width:590px;
+    margin:27px 0 34px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:13px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+    border-radius:100px;
+    padding:15px 23px;
+    font-weight:600;
+    font-size:14px;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:var(--gold2);
+    color:#151515;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 40px rgba(214,184,120,.2);
+}
+
+.btn-secondary{
+    border:1px solid var(--line);
+    color:white;
+    background:#111318;
+}
+
+.btn-secondary:hover{
+    border-color:rgba(214,184,120,.4);
+}
+
+/* HERO VISUAL */
+
+.hero-visual{
+    position:relative;
+    height:560px;
+}
+
+.hero-window{
+    position:absolute;
+    width:88%;
+    right:0;
+    top:30px;
+    height:500px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:28px;
+    background:#111318;
+    box-shadow:0 40px 100px rgba(0,0,0,.55);
+    overflow:hidden;
+    transform:rotate(2deg);
+}
+
+.window-top{
+    height:42px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:0 15px;
+}
+
+.window-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#555;
+}
+
+.mock-site{
+    height:calc(100% - 42px);
+    padding:35px;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(214,184,120,.16),transparent 30%),
+        linear-gradient(140deg,#171a20,#0e1014);
+}
+
+.mock-nav{
+    display:flex;
+    justify-content:space-between;
+    font-size:10px;
+    color:#aaa;
+    margin-bottom:60px;
+}
+
+.mock-title{
+    font-family:Manrope;
+    font-size:50px;
+    line-height:1;
+    letter-spacing:-3px;
+    max-width:400px;
+}
+
+.mock-line{
+    height:7px;
+    width:180px;
+    background:var(--gold);
+    margin-top:20px;
+    border-radius:10px;
+}
+
+.mock-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:65px;
+}
+
+.mock-card{
+    height:100px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.03);
+    border-radius:14px;
+}
+
+/* ---------------- GENERAL ---------------- */
+
+section{
+    padding:110px 0;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:30px;
+    margin-bottom:45px;
+}
+
+.kicker{
+    color:var(--gold);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+
+.section-title{
+    font-family:Manrope;
+    font-size:clamp(34px,5vw,58px);
+    letter-spacing:-2.5px;
+    line-height:1;
+}
+
+.section-description{
+    max-width:430px;
+    color:var(--muted);
+    line-height:1.7;
+}
+
+/* ---------------- STATS ---------------- */
+
+.stats{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+}
+
+.stat{
+    padding:35px 20px;
+    border-right:1px solid var(--line);
+}
+
+.stat:last-child{
+    border-right:0;
+}
+
+.stat strong{
+    display:block;
+    font-family:Manrope;
+    font-size:34px;
+    color:var(--gold2);
+}
+
+.stat span{
+    display:block;
+    color:var(--muted);
+    font-size:13px;
+    margin-top:7px;
+}
+
+/* ---------------- SERVICES ---------------- */
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.service{
+    background:linear-gradient(145deg,#14161b,#0e1013);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px;
+    min-height:270px;
+    transition:.35s;
+}
+
+.service:hover{
+    transform:translateY(-7px);
+    border-color:rgba(214,184,120,.3);
+}
+
+.service-icon{
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    background:rgba(214,184,120,.08);
+    color:var(--gold2);
+    font-size:20px;
+    margin-bottom:55px;
+}
+
+.service h3{
+    font-family:Manrope;
+    font-size:21px;
+    margin-bottom:11px;
+}
+
+.service p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* ---------------- PROJECTS ---------------- */
+
+.projects-section{
+    background:linear-gradient(180deg,transparent,rgba(255,255,255,.015),transparent);
+}
+
+.filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:25px;
+}
+
+.filter{
+    border:1px solid var(--line);
+    background:#111318;
+    color:#aaa;
+    border-radius:100px;
+    padding:9px 15px;
+    font-size:12px;
+    transition:.25s;
+}
+
+.filter.active,
+.filter:hover{
+    background:var(--gold);
+    color:#111;
+    border-color:var(--gold);
+}
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.project{
+    border:1px solid var(--line);
+    background:#111318;
+    border-radius:26px;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.project.hidden{
+    display:none;
+}
+
+.project:hover{
+    transform:translateY(-6px);
+    border-color:rgba(214,184,120,.28);
+}
+
+.project-preview{
+    height:310px;
+    position:relative;
+    overflow:hidden;
+}
+
+/* MINI PROJECT 1 */
+
+.p-maison{
+    background:
+        linear-gradient(rgba(30,24,20,.1),rgba(20,15,12,.5)),
+        linear-gradient(135deg,#d7c2a1,#eee2ce 45%,#8e755b);
+    color:#292017;
+    padding:28px;
+}
+
+.p-maison .mini-logo{
+    font-family:serif;
+    font-size:18px;
+    letter-spacing:4px;
+}
+
+.p-maison .mini-content{
+    position:absolute;
+    left:35px;
+    bottom:35px;
+}
+
+.p-maison h4{
+    font:italic 42px Georgia;
+    font-weight:400;
+}
+
+.p-maison button{
+    margin-top:14px;
+    padding:9px 17px;
+    background:#292017;
+    color:#fff;
+    border:0;
+}
+
+/* MINI PROJECT 2 */
+
+.p-volt{
+    background:
+        radial-gradient(circle at 80% 20%,#5b7c94,transparent 25%),
+        linear-gradient(130deg,#08090b,#161a20);
+    padding:25px;
+}
+
+.p-volt .mini-logo{
+    color:#fff;
+    font:800 20px Manrope;
+}
+
+.p-volt .mini-content{
+    position:absolute;
+    left:30px;
+    bottom:25px;
+}
+
+.p-volt h4{
+    font:800 58px Manrope;
+    line-height:.85;
+    letter-spacing:-5px;
+}
+
+.p-volt .mini-tag{
+    color:#a9c4d8;
+    font-size:11px;
+    letter-spacing:3px;
+}
+
+/* MINI PROJECT 3 */
+
+.p-noir{
+    background:
+        linear-gradient(120deg,rgba(10,10,10,.3),rgba(20,20,20,.8)),
+        linear-gradient(145deg,#394049,#11151a 55%,#a28a67);
+    padding:27px;
+}
+
+.p-noir .mini-logo{
+    color:#eee;
+    font:600 15px Manrope;
+    letter-spacing:3px;
+}
+
+.p-noir .mini-content{
+    position:absolute;
+    left:30px;
+    bottom:30px;
+}
+
+.p-noir h4{
+    font:500 43px Georgia;
+    line-height:.95;
+}
+
+.p-noir small{
+    color:#c9c9c9;
+}
+
+/* MINI PROJECT 4 */
+
+.p-neon{
+    background:
+        radial-gradient(circle at 50% 50%,rgba(125,163,185,.2),transparent 35%),
+        #080a0d;
+    padding:28px;
+}
+
+.p-neon:after{
+    content:"";
+    position:absolute;
+    inset:25px;
+    border:1px solid rgba(137,172,190,.35);
+    box-shadow:inset 0 0 60px rgba(90,130,150,.06);
+}
+
+.p-neon .mini-logo{
+    color:#b8d1df;
+    font:700 15px Manrope;
+    letter-spacing:5px;
+    position:relative;
+    z-index:2;
+}
+
+.p-neon .mini-content{
+    position:absolute;
+    left:45px;
+    bottom:42px;
+    z-index:2;
+}
+
+.p-neon h4{
+    font:800 45px Manrope;
+    letter-spacing:-3px;
+}
+
+/* MINI PROJECT 5 */
+
+.p-cucina{
+    background:
+        radial-gradient(circle at 80% 20%,rgba(214,184,120,.25),transparent 30%),
+        linear-gradient(135deg,#251e18,#0f0e0c);
+    padding:28px;
+}
+
+.p-cucina .mini-logo{
+    color:#d9c29a;
+    font:italic 24px Georgia;
+}
+
+.p-cucina .mini-content{
+    position:absolute;
+    left:35px;
+    bottom:32px;
+}
+
+.p-cucina h4{
+    font:italic 47px Georgia;
+}
+
+.p-cucina p{
+    color:#b8b1a8;
+}
+
+/* MINI PROJECT 6 */
+
+.p-object{
+    background:#e7e5df;
+    color:#1d1d1b;
+    padding:28px;
+}
+
+.p-object .mini-logo{
+    font:800 16px Manrope;
+    letter-spacing:5px;
+}
+
+.p-object .mini-content{
+    position:absolute;
+    left:35px;
+    bottom:35px;
+}
+
+.p-object h4{
+    font:500 52px Manrope;
+    letter-spacing:-4px;
+}
+
+.project-info{
+    padding:25px 27px 28px;
+}
+
+.project-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.project h3{
+    font-family:Manrope;
+    font-size:22px;
+}
+
+.project-type{
+    color:var(--gold);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+.project-info p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+    margin:10px 0 20px;
+}
+
+.project-btn{
+    border:0;
+    background:transparent;
+    color:var(--gold2);
+    font-weight:600;
+    font-size:13px;
+    padding:0;
+}
+
+.project-btn:hover{
+    text-decoration:underline;
+}
+
+/* ---------------- PROCESS ---------------- */
+
+.process{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+.step{
+    padding:30px 25px;
+    border-right:1px solid var(--line);
+}
+
+.step:last-child{
+    border:0;
+}
+
+.step-number{
+    color:var(--gold);
+    font-size:12px;
+    margin-bottom:50px;
+}
+
+.step h3{
+    font-family:Manrope;
+    margin-bottom:10px;
+}
+
+.step p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* ---------------- CONTACT ---------------- */
+
+.contact-box{
+    border:1px solid rgba(214,184,120,.2);
+    background:
+        radial-gradient(circle at 80% 10%,rgba(214,184,120,.1),transparent 30%),
+        linear-gradient(135deg,#14161a,#0e1013);
+    border-radius:32px;
+    padding:65px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+}
+
+.contact-box h2{
+    font-family:Manrope;
+    font-size:clamp(38px,5vw,60px);
+    line-height:1;
+    letter-spacing:-3px;
+}
+
+.contact-box p{
+    color:var(--muted);
+    line-height:1.7;
+    margin-top:20px;
+    max-width:470px;
+}
+
+.contact-form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.input{
+    width:100%;
+    background:#0b0d10;
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:15px;
+    color:white;
+    outline:none;
+}
+
+textarea.input{
+    resize:vertical;
+    min-height:120px;
+}
+
+.input:focus{
+    border-color:rgba(214,184,120,.5);
+}
+
+.whatsapp{
+    margin-top:12px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 20px;
+    background:#1d8b5b;
+    border-radius:100px;
+    font-weight:700;
+    font-size:13px;
+}
+
+.facebook{
+    display:inline-block;
+    margin-top:20px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:35px 0;
+}
+
+.footer-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#73767d;
+    font-size:12px;
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+}
+
+.footer-links button{
+    background:none;
+    border:0;
+    color:#73767d;
+}
+
+/* ---------------- PROJECT MODAL ---------------- */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(18px);
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-window{
+    width:min(1100px,100%);
+    height:min(88vh,850px);
+    background:#0d0f12;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 40px 120px rgba(0,0,0,.7);
+    display:flex;
+    flex-direction:column;
+}
+
+.modal-bar{
+    height:58px;
+    flex-shrink:0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+    background:#111318;
+}
+
+.modal-name{
+    font-family:Manrope;
+    font-weight:700;
+}
+
+.close{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:#17191e;
+    color:white;
+    font-size:18px;
+}
+
+.preview-scroll{
+    overflow:auto;
+    flex:1;
+}
+
+/* COMPLETE DEMOS */
+
+.demo{
+    min-height:100%;
+    background:#f2eee5;
+    color:#171717;
+}
+
+/* demo common */
+.demo-nav{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 55px;
+    border-bottom:1px solid rgba(0,0,0,.1);
+}
+
+.demo-nav-logo{
+    font-family:Manrope;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.demo-nav-links{
+    display:flex;
+    gap:25px;
+    font-size:12px;
+}
+
+.demo-hero{
+    min-height:550px;
+    display:flex;
+    align-items:center;
+    padding:70px 8%;
+}
+
+.demo-hero h1{
+    font-family:Manrope;
+    font-size:clamp(50px,8vw,105px);
+    line-height:.86;
+    letter-spacing:-6px;
+}
+
+.demo-hero p{
+    max-width:500px;
+    margin-top:25px;
+    color:#65635e;
+    line-height:1.6;
+}
+
+.demo-button{
+    display:inline-block;
+    margin-top:28px;
+    background:#171717;
+    color:white;
+    padding:14px 23px;
+    border-radius:100px;
+    font-size:12px;
+}
+
+.demo-section{
+    padding:70px 8%;
+}
+
+.demo-section h2{
+    font:700 40px Manrope;
+    letter-spacing:-2px;
+    margin-bottom:35px;
+}
+
+.demo-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.demo-item{
+    min-height:230px;
+    background:white;
+    border:1px solid rgba(0,0,0,.08);
+    padding:25px;
+}
+
+.demo-item-visual{
+    height:110px;
+    margin:-25px -25px 20px;
+    background:linear-gradient(135deg,#d9c7aa,#8e775e);
+}
+
+.demo-item:nth-child(2) .demo-item-visual{
+    background:linear-gradient(135deg,#bfc7c7,#52595c);
+}
+
+.demo-item:nth-child(3) .demo-item-visual{
+    background:linear-gradient(135deg,#dfd8cc,#80776b);
+}
+
+.demo-item h3{
+    font:700 18px Manrope;
+}
+
+.demo-item p{
+    color:#777;
+    font-size:12px;
+    margin-top:8px;
+    line-height:1.5;
+}
+
+.demo-footer{
+    background:#171717;
+    color:white;
+    padding:55px 8%;
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.demo-footer p{
+    color:#999;
+    font-size:12px;
+}
+
+/* VOLT */
+
+.demo-volt{
+    background:#080a0c;
+    color:white;
+}
+
+.demo-volt .demo-nav{
+    border-color:rgba(255,255,255,.08);
+}
+
+.demo-volt .demo-hero{
+    background:
+        radial-gradient(circle at 75% 40%,rgba(119,151,171,.3),transparent 25%),
+        #080a0c;
+}
+
+.demo-volt .demo-hero p{
+    color:#90969b;
+}
+
+.demo-volt .demo-button{
+    background:#d6b878;
+    color:#111;
+}
+
+.volt-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.volt-stat{
+    padding:35px;
+    border-right:1px solid rgba(255,255,255,.08);
+}
+
+.volt-stat strong{
+    display:block;
+    font:800 42px Manrope;
+}
+
+.volt-stat span{
+    color:#7e8489;
+    font-size:11px;
+}
+
+.demo-volt .demo-section{
+    background:#0d1014;
+}
+
+.volt-card{
+    background:#14181d;
+    padding:28px;
+    min-height:220px;
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.volt-card h3{
+    font:700 20px Manrope;
+    margin-top:50px;
+}
+
+.volt-card p{
+    color:#858b91;
+    font-size:12px;
+    line-height:1.6;
+    margin-top:10px;
+}
+
+/* NOIR */
+
+.demo-noir{
+    background:#e9e4dc;
+}
+
+.demo-noir .demo-hero{
+    background:linear-gradient(135deg,#4b5155,#1a1e20);
+    color:white;
+}
+
+.demo-noir .demo-hero p{
+    color:#c2c5c6;
+}
+
+.noir-listing{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.noir-house{
+    min-height:300px;
+    padding:25px;
+    display:flex;
+    align-items:end;
+    color:white;
+    background:linear-gradient(145deg,#89939a,#20262a);
+}
+
+.noir-house:nth-child(2){
+    background:linear-gradient(145deg,#b7a88d,#36342f);
+}
+
+.noir-house h3{
+    font:500 30px Georgia;
+}
+
+.noir-house p{
+    color:#ddd;
+    font-size:11px;
+    margin-top:5px;
+}
+
+/* NEON */
+
+.demo-neon{
+    background:#06080a;
+    color:#dbe7ed;
+}
+
+.demo-neon .demo-nav{
+    border-color:rgba(137,172,190,.15);
+}
+
+.demo-neon .demo-hero{
+    min-height:600px;
+    background:
+        linear-gradient(rgba(100,150,170,.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(100,150,170,.05) 1px,transparent 1px);
+    background-size:50px 50px;
+}
+
+.demo-neon .demo-hero h1{
+    color:#d9edf5;
+}
+
+.demo-neon .demo-hero p{
+    color:#82919a;
+}
+
+.neon-box{
+    border:1px solid rgba(126,165,184,.25);
+    background:rgba(120,160,180,.04);
+    padding:30px;
+    min-height:220px;
+}
+
+.neon-box h3{
+    font:700 18px Manrope;
+    color:#bdd7e4;
+}
+
+.neon-box p{
+    color:#74838b;
+    font-size:12px;
+    margin-top:12px;
+    line-height:1.6;
+}
+
+/* CUCINA */
+
+.demo-cucina{
+    background:#f4eee4;
+}
+
+.demo-cucina .demo-hero{
+    background:
+        radial-gradient(circle at 80% 30%,#cdb590,transparent 20%),
+        #201914;
+    color:#e7d8c1;
+}
+
+.demo-cucina .demo-hero p{
+    color:#a99a87;
+}
+
+.cucina-menu{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.menu-item{
+    background:white;
+    padding:25px;
+    border-bottom:1px solid #d5c6ae;
+}
+
+.menu-item div{
+    display:flex;
+    justify-content:space-between;
+    font-family:Georgia;
+    font-size:18px;
+}
+
+.menu-item p{
+    color:#888;
+    font-size:11px;
+    line-height:1.5;
+    margin-top:8px;
+}
+
+/* OBJECT */
+
+.demo-object{
+    background:#eeeae2;
+}
+
+.object-hero{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:560px;
+}
+
+.object-copy{
+    padding:80px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.object-copy h1{
+    font:500 80px Manrope;
+    letter-spacing:-6px;
+    line-height:.9;
+}
+
+.object-copy p{
+    color:#777;
+    line-height:1.6;
+    margin-top:20px;
+    max-width:400px;
+}
+
+.object-product{
+    background:#d9d5cd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.object-product-shape{
+    width:210px;
+    height:300px;
+    border-radius:25px;
+    background:linear-gradient(135deg,#111,#555);
+    box-shadow:30px 30px 70px rgba(0,0,0,.25);
+    transform:rotate(-8deg);
+}
+
+.object-products{
+    padding:70px 8%;
+}
+
+.object-products h2{
+    font:500 42px Manrope;
+    letter-spacing:-2px;
+    margin-bottom:35px;
+}
+
+.object-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.object-card{
+    background:white;
+    padding:20px;
+}
+
+.object-card-visual{
+    height:190px;
+    background:#d7d3cb;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.object-card-visual span{
+    width:70px;
+    height:100px;
+    border-radius:10px;
+    background:#222;
+}
+
+.object-card:nth-child(2) .object-card-visual span{
+    background:#777;
+    width:100px;
+    height:70px;
+}
+
+.object-card:nth-child(3) .object-card-visual span{
+    background:#b0aaa0;
+    border:2px solid #555;
+}
+
+.object-card h3{
+    font:600 15px Manrope;
+}
+
+.object-card p{
+    color:#888;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* ---------------- LEGAL MODAL ---------------- */
+
+.simple-modal{
+    position:fixed;
+    inset:0;
+    z-index:4000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(10px);
+}
+
+.simple-modal.active{
+    display:flex;
+}
+
+.simple-box{
+    width:min(650px,100%);
+    max-height:80vh;
+    overflow:auto;
+    background:#13151a;
+    border:1px solid var(--line);
+    border-radius:25px;
+    padding:35px;
+}
+
+.simple-box h2{
+    font:700 30px Manrope;
+    margin-bottom:20px;
+}
+
+.simple-box p{
+    color:#999;
+    line-height:1.7;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.simple-close{
+    float:right;
+    background:none;
+    border:0;
+    color:white;
+    font-size:22px;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media(max-width:900px){
+
+    .nav-links,
+    .nav-cta{
+        display:none;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .nav.mobile-open .nav-links{
+        position:absolute;
+        top:70px;
+        left:20px;
+        right:20px;
+        display:flex;
+        flex-direction:column;
+        background:#111318;
+        border:1px solid var(--line);
+        padding:22px;
+        border-radius:20px;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-visual{
+        height:430px;
+    }
+
+    .hero-window{
+        width:100%;
+        height:390px;
+    }
+
+    .mock-title{
+        font-size:36px;
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stat:nth-child(2){
+        border-right:0;
+    }
+
+    .stat:nth-child(-n+2){
+        border-bottom:1px solid var(--line);
+    }
+
+    .services-grid{
+        grid-template-columns:1fr;
+    }
+
+    .projects-grid{
+        grid-template-columns:1fr;
+    }
+
+    .process{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .step:nth-child(2){
+        border-right:0;
+    }
+
+    .step:nth-child(-n+2){
+        border-bottom:1px solid var(--line);
+    }
+
+    .contact-box{
+        grid-template-columns:1fr;
+        padding:40px 25px;
+    }
+
+    .demo-nav{
+        padding:0 25px;
+    }
+
+    .demo-nav-links{
+        display:none;
+    }
+
+    .demo-hero{
+        padding:55px 25px;
+        min-height:450px;
+    }
+
+    .demo-section{
+        padding:55px 25px;
+    }
+
+    .demo-grid{
+        grid-template-columns:1fr;
+    }
+
+    .volt-stats{
+        grid-template-columns:1fr;
+    }
+
+    .volt-stat{
+        border-right:0;
+        border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .noir-listing,
+    .cucina-menu,
+    .object-row{
+        grid-template-columns:1fr;
+    }
+
+    .object-hero{
+        grid-template-columns:1fr;
+    }
+
+    .object-copy{
+        padding:55px 25px;
+    }
+
+    .object-copy h1{
+        font-size:58px;
+    }
+
+    .object-product{
+        min-height:430px;
+    }
+
+    .demo-footer{
+        flex-direction:column;
+        padding:45px 25px;
+    }
+}
+
+@media(max-width:600px){
+
+    .container{
+        width:min(100% - 28px,1180px);
+    }
+
+    section{
+        padding:80px 0;
+    }
+
+    .hero{
+        padding-top:120px;
+    }
+
+    .hero h1{
+        font-size:47px;
+        letter-spacing:-2.5px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .hero-visual{
+        height:350px;
+    }
+
+    .hero-window{
+        height:330px;
+        transform:none;
+    }
+
+    .mock-site{
+        padding:20px;
+    }
+
+    .mock-nav{
+        margin-bottom:35px;
+    }
+
+    .mock-title{
+        font-size:30px;
+    }
+
+    .mock-cards{
+        margin-top:40px;
+    }
+
+    .section-head{
+        flex-direction:column;
+        align-items:start;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stat{
+        padding:25px 15px;
+    }
+
+    .stat strong{
+        font-size:26px;
+    }
+
+    .project-preview{
+        height:240px;
+    }
+
+    .project-info{
+        padding:20px;
+    }
+
+    .process{
+        grid-template-columns:1fr;
+    }
+
+    .step{
+        border-right:0;
+        border-bottom:1px solid var(--line);
+    }
+
+    .step:last-child{
+        border-bottom:0;
+    }
+
+    .modal{
+        padding:8px;
+    }
+
+    .modal-window{
+        height:94vh;
+        border-radius:18px;
+    }
+
+    .modal-bar{
+        height:50px;
+    }
+
+    .demo-hero h1{
+        font-size:58px;
+        letter-spacing:-4px;
+    }
+
+    .demo-section h2{
+        font-size:32px;
+    }
+
+    .simple-box{
+        padding:25px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="#inicio" class="logo">VY<span>R</span>A</a>
+
+        <div class="nav-links">
+            <a href="#servicios">Servicios</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#proceso">Proceso</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+
+        <a href="#contacto" class="nav-cta">Hablemos</a>
+
+        <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+    <div class="container hero-grid">
+
+        <div>
+            <div class="eyebrow">
+                <span class="dot"></span>
+                Diseño web · Desarrollo · Experiencias digitales
+            </div>
+
+            <h1>
+                Sitios que hacen que tu negocio se vea <em>profesional.</em>
+            </h1>
+
+            <p>
+                Creo páginas web modernas, rápidas y adaptadas a celular,
+                pensadas para que una marca tenga una presencia digital
+                que realmente destaque.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+                <a href="#contacto" class="btn btn-secondary">Crear mi página</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-window">
+
+                <div class="window-top">
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                </div>
+
+                <div class="mock-site">
+
+                    <div class="mock-nav">
+                        <span>STUDIO</span>
+                        <span>WORK · ABOUT · CONTACT</span>
+                    </div>
+
+                    <div class="mock-title">
+                        Digital<br>
+                        experiences.
+                    </div>
+
+                    <div class="mock-line"></div>
+
+                    <div class="mock-cards">
+                        <div class="mock-card"></div>
+                        <div class="mock-card"></div>
+                        <div class="mock-card"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="container stats-grid">
+
+        <div class="stat">
+            <strong>01</strong>
+            <span>Diseño personalizado</span>
+        </div>
+
+        <div class="stat">
+            <strong>100%</strong>
+            <span>Adaptable a celular</span>
+        </div>
+
+        <div class="stat">
+            <strong>24/7</strong>
+            <span>Tu sitio disponible</span>
+        </div>
+
+        <div class="stat">
+            <strong>∞</strong>
+            <span>Posibilidades creativas</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios">
+    <div class="container">
+
+        <div class="section-head">
+            <div>
+                <div class="kicker">Servicios</div>
+                <h2 class="section-title">De la idea<br>al sitio.</h2>
+            </div>
+
+            <p class="section-description">
+                Una presencia digital puede ser mucho más que una página.
+                La idea es crear una experiencia que represente tu negocio.
+            </p>
+        </div>
+
+        <div class="services-grid">
+
+            <article class="service">
+                <div class="service-icon">✦</div>
+                <h3>Diseño web</h3>
+                <p>
+                    Diseños modernos y personalizados para negocios,
+                    marcas, proyectos personales y emprendimientos.
+                </p>
+            </article>
+
+            <article class="service">
+                <div class="service-icon">◈</div>
+                <h3>Landing pages</h3>
+                <p>
+                    Páginas enfocadas en presentar un producto, servicio,
+                    promoción o campaña de manera clara y atractiva.
+                </p>
+            </article>
+
+            <article class="service">
+                <div class="service-icon">⌘</div>
+                <h3>Tiendas online</h3>
+                <p>
+                    Experiencias de catálogo y comercio electrónico
+                    pensadas para que tus productos tengan protagonismo.
+                </p>
+            </article>
+
+            <article class="service">
+                <div class="service-icon">◎</div>
+                <h3>Diseño responsive</h3>
+                <p>
+                    La página se adapta a diferentes tamaños de pantalla:
+                    computadora, tablet y teléfono.
+                </p>
+            </article>
+
+            <article class="service">
+                <div class="service-icon">↗</div>
+                <h3>Optimización</h3>
+                <p>
+                    Estructura limpia, navegación sencilla y una experiencia
+                    pensada para que el visitante encuentre lo importante.
+                </p>
+            </article>
+
+            <article class="service">
+                <div class="service-icon">◇</div>
+                <h3>Identidad digital</h3>
+                <p>
+                    Colores, tipografías, estructura y estilo visual
+                    coherentes con la personalidad de cada proyecto.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="proyectos">
+    <div class="container">
+
+        <div class="section-head">
+            <div>
+                <div class="kicker">Portafolio</div>
+                <h2 class="section-title">Ideas que<br>pueden cobrar vida.</h2>
+            </div>
+
+            <p class="section-description">
+                Estos son conceptos y demos creados para mostrar diferentes
+                estilos de páginas que puedo desarrollar.
+            </p>
+        </div>
+
+        <div class="filters">
+            <button class="filter active" data-filter="all">Todos</button>
+            <button class="filter" data-filter="luxury">Elegante</button>
+            <button class="filter" data-filter="business">Negocios</button>
+            <button class="filter" data-filter="fitness">Fitness</button>
+            <button class="filter" data-filter="tech">Tecnología</button>
+            <button class="filter" data-filter="food">Gastronomía</button>
+            <button class="filter" data-filter="shop">Tienda</button>
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- 1 -->
+            <article class="project" data-category="luxury">
+                <div class="project-preview p-maison">
+                    <div class="mini-logo">MAISON AURELIA</div>
+
+                    <div class="mini-content">
+                        <h4>Elegance<br>in detail.</h4>
+                        <button>DISCOVER</button>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-top">
+                        <h3>Maison Aurelia</h3>
+                        <span class="project-type">Concepto</span>
+                    </div>
+
+                    <p>
+                        Sitio editorial de lujo con estética sofisticada
+                        y enfoque visual.
+                    </p>
+
+                    <button class="project-btn" data-project="maison">
+                        Ver proyecto completo →
+                    </button>
+                </div>
+            </article>
+
+            <!-- 2 -->
+            <article class="project" data-category="fitness">
+                <div class="project-preview p-volt">
+                    <div class="mini-logo">VOLT / ATHLETICS</div>
+
+                    <div class="mini-content">
+                        <span class="mini-tag">PERFORMANCE</span>
+                        <h4>MOVE<br>HARD.</h4>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-top">
+                        <h3>VOLT Athletics</h3>
+                        <span class="project-type">Concepto</span>
+                    </div>
+
+                    <p>
+                        Página deportiva de alto impacto para entrenamiento
+                        y rendimiento.
+                    </p>
+
+                    <button class="project-btn" data-project="volt">
+                        Ver proyecto completo →
+                    </button>
+                </div>
+            </article>
+
+            <!-- 3 -->
+            <article class="project" data-category="business">
+                <div class="project-preview p-noir">
+                    <div class="mini-logo">NOIR ESTATES</div>
+
+                    <div class="mini-content">
+                        <h4>Spaces<br>worth living.</h4>
+                        <small>PRIVATE COLLECTION</small>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-top">
+                        <h3>NOIR Estates</h3>
+                        <span class="project-type">Concepto</span>
+                    </div>
+
+                    <p>
+                        Experiencia premium para presentar propiedades
+                        y servicios inmobiliarios.
+                    </p>
+
+                    <button class="project-btn" data-project="noir">
+                        Ver proyecto completo →
+                    </button>
+                </div>
+            </article>
+
+            <!-- 4 -->
+            <article class="project" data-category="tech">
+                <div class="project-preview p-neon">
+                    <div class="mini-logo">NEON LAB</div>
+
+                    <div class="mini-content">
+                        <h4>BUILD<br>THE NEXT.</h4>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-top">
+                        <h3>NEON LAB</h3>
+                        <span class="project-type">Concepto</span>
+                    </div>
+
+                    <p>
+                        Landing tecnológica con estética digital,
+                        minimalista y futurista.
+                    </p>
+
+                    <button class="project-btn" data-project="neon">
+                        Ver proyecto completo →
+                    </button>
+                </div>
+            </article>
+
+            <!-- 5 -->
+            <article class="project" data-category="food">
+                <div class="project-preview p-cucina">
+                    <div class="mini-logo">VERO CUCINA</div>
+
+                    <div class="mini-content">
+                        <h4>Simple.<br>Authentic.</h4>
+                        <p>Italian kitchen</p>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-top">
+                        <h3>Vero Cucina</h3>
+                        <span class="project-type">Concepto</span>
+                    </div>
+
+                    <p>
+                        Página gastronómica elegante para mostrar menú,
+                        concepto y experiencia del restaurante.
+                    </p>
+
+                    <button class="project-btn" data-project="cucina">
+                        Ver proyecto completo →
+                    </button>
+                </div>
+            </article>
+
+            <!-- 6 -->
+            <article class="project" data-category="shop">
+                <div class="project-preview p-object">
+                    <div class="mini-logo">OBJECT 01</div>
+
+                    <div class="mini-content">
+                        <h4>FORM<br>FUNCTION.</h4>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-top">
+                        <h3>OBJECT 01</h3>
+                        <span class="project-type">Concepto</span>
+                    </div>
+
+                    <p>
+                        Concepto de tienda online minimalista para productos
+                        de diseño.
+                    </p>
+
+                    <button class="project-btn" data-project="object">
+                        Ver proyecto completo →
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section id="proceso">
+    <div class="container">
+
+        <div class="section-head">
+            <div>
+                <div class="kicker">Proceso</div>
+                <h2 class="section-title">Así se<br>construye.</h2>
+            </div>
+
+            <p class="section-description">
+                Un proceso sencillo para convertir una idea en una página
+                lista para presentar tu negocio.
+            </p>
+        </div>
+
+        <div class="process">
+
+            <div class="step">
+                <div class="step-number">01 — IDEA</div>
+                <h3>Conocemos el proyecto</h3>
+                <p>
+                    Definimos qué hace el negocio, qué necesita mostrar
+                    y qué objetivo tendrá la página.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">02 — DISEÑO</div>
+                <h3>Construimos la experiencia</h3>
+                <p>
+                    Se crea la estructura visual, colores, secciones,
+                    navegación y estilo.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">03 — DESARROLLO</div>
+                <h3>Hacemos que funcione</h3>
+                <p>
+                    Convertimos el diseño en una página funcional y
+                    adaptable a diferentes pantallas.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">04 — ENTREGA</div>
+                <h3>Tu página lista</h3>
+                <p>
+                    Revisamos detalles y dejamos el proyecto preparado
+                    para publicarse.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto">
+    <div class="container">
+
+        <div class="contact-box">
+
+            <div>
+                <div class="kicker">Contacto</div>
+
+                <h2>
+                    ¿Tienes una idea?
+                    Hagámosla realidad.
+                </h2>
+
+                <p>
+                    Cuéntame qué negocio tienes, qué necesitas y qué tipo
+                    de página estás imaginando.
+                </p>
+
+                <a
+                    class="whatsapp"
+                    href="https://wa.me/525668020227"
+                    target="_blank"
+                >
+                    WhatsApp · +52 56 6802 0227
+                </a>
+
+                <div class="facebook">
+                    Facebook · Próximamente
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+
+                <input
+                    class="input"
+                    id="name"
+                    type="text"
+                    placeholder="Tu nombre"
+                    required
+                >
+
+                <input
+                    class="input"
+                    id="business"
+                    type="text"
+                    placeholder="Nombre de tu negocio"
+                >
+
+                <textarea
+                    class="input"
+                    id="message"
+                    placeholder="Cuéntame qué página necesitas..."
+                    required
+                ></textarea>
+
+                <button class="btn btn-primary" type="submit">
+                    Enviar por WhatsApp →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container footer-inner">
+
+        <div>
+            © 2026 VYRA — Diseño web.
+        </div>
+
+        <div class="footer-links">
+            <button data-legal="privacy">Privacidad</button>
+            <button data-legal="legal">Aviso legal</button>
+        </div>
+
+    </div>
+</footer>
+
+
+<!-- ========================= -->
+<!-- PROJECT MODAL -->
+<!-- ========================= -->
+
+<div class="modal" id="projectModal">
+
+    <div class="modal-window">
+
+        <div class="modal-bar">
+            <span class="modal-name" id="modalName">
+                Proyecto
+            </span>
+
+            <button class="close" id="closeProject">
+                ×
+            </button>
+        </div>
+
+        <div class="preview-scroll" id="previewContent"></div>
+
+    </div>
+</div>
+
+
+<!-- ========================= -->
+<!-- LEGAL MODAL -->
+<!-- ========================= -->
+
+<div class="simple-modal" id="legalModal">
+
+    <div class="simple-box">
+
+        <button class="simple-close" id="closeLegal">
+            ×
+        </button>
+
+        <div id="legalContent"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ================================
+   NAVBAR
+================================ */
+
+const nav = document.getElementById("nav");
+
+window.addEventListener("scroll", () => {
+    nav.classList.toggle("scrolled", window.scrollY > 30);
+});
+
+
+/* ================================
+   MOBILE MENU
+================================ */
+
+const menuBtn = document.getElementById("menuBtn");
+
+menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("mobile-open");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        nav.classList.remove("mobile-open");
+    });
+});
+
+
+/* ================================
+   PROJECT FILTERS
+================================ */
+
+const filters = document.querySelectorAll(".filter");
+const projects = document.querySelectorAll(".project");
+
+filters.forEach(filter => {
+
+    filter.addEventListener("click", () => {
+
+        filters.forEach(f => f.classList.remove("active"));
+        filter.classList.add("active");
+
+        const category = filter.dataset.filter;
+
+        projects.forEach(project => {
+
+            if(category === "all"){
+                project.classList.remove("hidden");
+                return;
+            }
+
+            project.classList.toggle(
+                "hidden",
+                project.dataset.category !== category
+            );
+
+        });
+
+    });
+
+});
+
+
+/* ================================
+   PROJECT PREVIEWS
+================================ */
+
+const projectModal = document.getElementById("projectModal");
+const previewContent = document.getElementById("previewContent");
+const modalName = document.getElementById("modalName");
+
+const projectData = {
+
+    maison: {
+        name:"Maison Aurelia",
+        html:`
+
+        <div class="demo">
+
+            <div class="demo-nav">
+                <div class="demo-nav-logo">MAISON AURELIA</div>
+
+                <div class="demo-nav-links">
+                    <span>COLLECTION</span>
+                    <span>ABOUT</span>
+                    <span>STUDIO</span>
+                    <span>CONTACT</span>
+                </div>
+            </div>
+
+            <div class="demo-hero">
+
+                <div>
+                    <div style="font-size:11px;letter-spacing:3px;">
+                        A NEW PERSPECTIVE
+                    </div>
+
+                    <h1>
+                        Elegance<br>
+                        in detail.
+                    </h1>
+
+                    <p>
+                        Una identidad construida alrededor de materiales,
+                        formas y detalles atemporales.
+                    </p>
+
+                    <a class="demo-button">EXPLORE COLLECTION</a>
+                </div>
+
+            </div>
+
+            <div class="demo-section">
+
+                <h2>The collection.</h2>
+
+                <div class="demo-grid">
+
+                    <div class="demo-item">
+                        <div class="demo-item-visual"></div>
+                        <h3>Aurelia No.01</h3>
+                        <p>
+                            Diseño esencial inspirado en arquitectura
+                            contemporánea.
+                        </p>
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-item-visual"></div>
+                        <h3>Object No.02</h3>
+                        <p>
+                            Materiales naturales y composición minimalista.
+                        </p>
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-item-visual"></div>
+                        <h3>Edition No.03</h3>
+                        <p>
+                            Una pieza creada para espacios sofisticados.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="demo-section" style="background:#ded6c8;">
+
+                <h2>Designed to last.</h2>
+
+                <p style="max-width:600px;color:#666;line-height:1.8;">
+                    Maison Aurelia representa un concepto de marca premium:
+                    elegante, limpio y enfocado completamente en la identidad
+                    visual.
+                </p>
+
+            </div>
+
+            <div class="demo-footer">
+
+                <div>
+                    <strong>MAISON AURELIA</strong>
+                    <p style="margin-top:10px;">
+                        Concepto de demostración.
+                    </p>
+                </div>
+
+                <div>
+                    <p>Instagram · Pinterest · Contact</p>
+                </div>
+
+            </div>
+
+        </div>
+        `
+    },
+
+
+    volt: {
+        name:"VOLT Athletics",
+        html:`
+
+        <div class="demo demo-volt">
+
+            <div class="demo-nav">
+                <div class="demo-nav-logo">VOLT / ATHLETICS</div>
+
+                <div class="demo-nav-links">
+                    <span>TRAIN</span>
+                    <span>PROGRAMS</span>
+                    <span>COACHING</span>
+                    <span>CONTACT</span>
+                </div>
+            </div>
+
+            <div class="demo-hero">
+
+                <div>
+
+                    <div style="color:#9eb5c5;font-size:11px;letter-spacing:4px;">
+                        PERFORMANCE SYSTEM
+                    </div>
+
+                    <h1>
+                        MOVE<br>
+                        HARD.
+                    </h1>
+
+                    <p>
+                        Entrenamiento inteligente para personas que quieren
+                        superar sus propios límites.
+                    </p>
+
+                    <a class="demo-button">
+                        START TRAINING
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="volt-stats">
+
+                <div class="volt-stat">
+                    <strong>12</strong>
+                    <span>PROGRAMS</span>
+                </div>
+
+                <div class="volt-stat">
+                    <strong>48</strong>
+                    <span>WEEKLY SESSIONS</span>
+                </div>
+
+                <div class="volt-stat">
+                    <strong>01</strong>
+                    <span>MISSION</span>
+                </div>
+
+            </div>
+
+            <div class="demo-section">
+
+                <h2>Built for performance.</h2>
+
+                <div class="demo-grid">
+
+                    <div class="volt-card">
+                        <div style="color:#9eb5c5;">01</div>
+                        <h3>Strength</h3>
+                        <p>
+                            Programas enfocados en desarrollar fuerza
+                            y rendimiento.
+                        </p>
+                    </div>
+
+                    <div class="volt-card">
+                        <div style="color:#9eb5c5;">02</div>
+                        <h3>Conditioning</h3>
+                        <p>
+                            Entrenamiento diseñado para mejorar resistencia
+                            y capacidad física.
+                        </p>
+                    </div>
+
+                    <div class="volt-card">
+                        <div style="color:#9eb5c5;">03</div>
+                        <h3>Recovery</h3>
+                        <p>
+                            Estrategias para complementar el entrenamiento
+                            y mantener consistencia.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="demo-footer">
+                <div>
+                    <strong>VOLT / ATHLETICS</strong>
+                    <p>Performance concept.</p>
+                </div>
+                <div>
+                    <p>Train · Recover · Repeat</p>
+                </div>
+            </div>
+
+        </div>
+        `
+    },
+
+
+    noir: {
+        name:"NOIR Estates",
+        html:`
+
+        <div class="demo demo-noir">
+
+            <div class="demo-nav">
+
+                <div class="demo-nav-logo">
+                    NOIR ESTATES
+                </div>
+
+                <div class="demo-nav-links">
+                    <span>PROPERTIES</span>
+                    <span>PRIVATE CLIENTS</span>
+                    <span>ABOUT</span>
+                    <span>CONTACT</span>
+                </div>
+
+            </div>
+
+            <div class="demo-hero">
+
+                <div>
+
+                    <div style="font-size:11px;letter-spacing:4px;">
+                        PRIVATE REAL ESTATE
+                    </div>
+
+                    <h1>
+                        Spaces<br>
+                        worth living.
+                    </h1>
+
+                    <p>
+                        Propiedades seleccionadas para quienes buscan
+                        arquitectura, ubicación y carácter.
+                    </p>
+
+                    <a class="demo-button">
+                        VIEW COLLECTION
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="demo-section">
+
+                <h2>Selected properties.</h2>
+
+                <div class="noir-listing">
+
+                    <div class="noir-house">
+                        <div>
+                            <h3>Casa Aurea</h3>
+                            <p>Monterrey · Private residence</p>
+                        </div>
+                    </div>
+
+                    <div class="noir-house">
+                        <div>
+                            <h3>Villa 08</h3>
+                            <p>Querétaro · Contemporary architecture</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="demo-section" style="background:#d6d0c6;">
+
+                <h2>Beyond property.</h2>
+
+                <p style="max-width:600px;color:#666;line-height:1.8;">
+                    Un sitio inmobiliario puede presentar mucho más que
+                    fotografías: ubicación, características, información
+                    de contacto y una experiencia de marca completa.
+                </p>
+
+            </div>
+
+            <div class="demo-footer">
+
+                <div>
+                    <strong>NOIR ESTATES</strong>
+                    <p style="margin-top:10px;">
+                        Real estate concept.
+                    </p>
+                </div>
+
+                <div>
+                    <p>Private appointments · Contact</p>
+                </div>
+
+            </div>
+
+        </div>
+        `
+    },
+
+
+    neon: {
+        name:"NEON LAB",
+        html:`
+
+        <div class="demo demo-neon">
+
+            <div class="demo-nav">
+
+                <div class="demo-nav-logo">
+                    NEON LAB
+                </div>
+
+                <div class="demo-nav-links">
+                    <span>LAB</span>
+                    <span>PRODUCTS</span>
+                    <span>VISION</span>
+                    <span>CONTACT</span>
+                </div>
+
+            </div>
+
+            <div class="demo-hero">
+
+                <div>
+
+                    <div style="color:#7ea8bc;font-size:11px;letter-spacing:5px;">
+                        DIGITAL INNOVATION
+                    </div>
+
+                    <h1>
+                        BUILD<br>
+                        THE NEXT.
+                    </h1>
+
+                    <p>
+                        Tecnología, diseño y estrategia combinados
+                        para crear experiencias digitales diferentes.
+                    </p>
+
+                    <a
+                        class="demo-button"
+                        style="background:#bdd7e4;color:#071015;"
+                    >
+                        EXPLORE LAB
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="demo-section">
+
+                <h2>What we build.</h2>
+
+                <div class="demo-grid">
+
+                    <div class="neon-box">
+                        <div style="color:#7ea8bc;">01 / AI</div>
+                        <h3>Intelligent systems</h3>
+                        <p>
+                            Experiencias digitales construidas alrededor
+                            de nuevas tecnologías.
+                        </p>
+                    </div>
+
+                    <div class="neon-box">
+                        <div style="color:#7ea8bc;">02 / WEB</div>
+                        <h3>Digital platforms</h3>
+                        <p>
+                            Interfaces modernas para productos y servicios
+                            digitales.
+                        </p>
+                    </div>
+
+                    <div class="neon-box">
+                        <div style="color:#7ea8bc;">03 / FUTURE</div>
+                        <h3>New experiences</h3>
+                        <p>
+                            Conceptos visuales diseñados para destacar.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="demo-section" style="background:#090d10;">
+
+                <h2 style="color:#bdd7e4;">
+                    The future is built.
+                </h2>
+
+                <p style="color:#71828b;max-width:600px;line-height:1.8;">
+                    NEON LAB es un concepto de cómo una empresa tecnológica
+                    podría convertir su sitio web en parte de su producto.
+                </p>
+
+            </div>
+
+            <div class="demo-footer">
+                <div>
+                    <strong>NEON LAB</strong>
+                    <p>Technology concept.</p>
+                </div>
+                <div>
+                    <p>Research · Design · Technology</p>
+                </div>
+            </div>
+
+        </div>
+        `
+    },
+
+
+    cucina: {
+        name:"Vero Cucina",
+        html:`
+
+        <div class="demo demo-cucina">
+
+            <div class="demo-nav">
+
+                <div class="demo-nav-logo">
+                    VERO CUCINA
+                </div>
+
+                <div class="demo-nav-links">
+                    <span>MENU</span>
+                    <span>OUR STORY</span>
+                    <span>RESERVATIONS</span>
+                    <span>CONTACT</span>
+                </div>
+
+            </div>
+
+            <div class="demo-hero">
+
+                <div>
+
+                    <div style="color:#c8ad82;font-size:11px;letter-spacing:4px;">
+                        ITALIAN KITCHEN
+                    </div>
+
+                    <h1>
+                        Simple.<br>
+                        Authentic.
+                    </h1>
+
+                    <p>
+                        Una experiencia gastronómica inspirada en recetas,
+                        ingredientes y momentos para compartir.
+                    </p>
+
+                    <a
+                        class="demo-button"
+                        style="background:#d6b878;"
+                    >
+                        VIEW MENU
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="demo-section">
+
+                <h2>Our menu.</h2>
+
+                <div class="cucina-menu">
+
+                    <div class="menu-item">
+                        <div>
+                            <span>Tagliatelle</span>
+                            <span>$—</span>
+                        </div>
+                        <p>
+                            Pasta fresca, salsa de la casa y parmesano.
+                        </p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div>
+                            <span>Risotto</span>
+                            <span>$—</span>
+                        </div>
+                        <p>
+                            Arroz italiano, vegetales y queso curado.
+                        </p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div>
+                            <span>Bruschetta</span>
+                            <span>$—</span>
+                        </div>
+                        <p>
+                            Pan artesanal, tomate y aceite de oliva.
+                        </p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div>
+                            <span>Tiramisù</span>
+                            <span>$—</span>
+                        </div>
+                        <p>
+                            Receta clásica con café y cacao.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="demo-section" style="background:#272019;color:#e6d7c0;">
+
+                <h2>Come together.</h2>
+
+                <p style="color:#a99b89;max-width:600px;line-height:1.8;">
+                    Una página gastronómica puede integrar menú, concepto,
+                    información del lugar, reservas y contacto en una sola
+                    experiencia.
+                </p>
+
+            </div>
+
+            <div class="demo-footer">
+
+                <div>
+                    <strong>VERO CUCINA</strong>
+                    <p>Restaurant concept.</p>
+                </div>
+
+                <div>
+                    <p>Menu · Reservations · Contact</p>
+                </div>
+
+            </div>
+
+        </div>
+        `
+    },
+
+
+    object: {
+        name:"OBJECT 01",
+        html:`
+
+        <div class="demo demo-object">
+
+            <div class="demo-nav">
+
+                <div class="demo-nav-logo">
+                    OBJECT 01
+                </div>
+
+                <div class="demo-nav-links">
+                    <span>SHOP</span>
+                    <span>COLLECTION</span>
+                    <span>STUDIO</span>
+                    <span>BAG (0)</span>
+                </div>
+
+            </div>
+
+            <div class="object-hero">
+
+                <div class="object-copy">
+
+                    <div style="font-size:10px;letter-spacing:4px;">
+                        COLLECTION 01
+                    </div>
+
+                    <h1>
+                        Form<br>
+                        Function.
+                    </h1>
+
+                    <p>
+                        Objetos cotidianos reinterpretados mediante una
+                        estética limpia y funcional.
+                    </p>
+
+                    <a class="demo-button">
+                        SHOP COLLECTION
+                    </a>
+
+                </div>
+
+                <div class="object-product">
+
+                    <div class="object-product-shape"></div>
+
+                </div>
+
+            </div>
+
+            <div class="object-products">
+
+                <h2>Featured objects.</h2>
+
+                <div class="object-row">
+
+                    <div class="object-card">
+
+                        <div class="object-card-visual">
+                            <span></span>
+                        </div>
+
+                        <h3>Object 01</h3>
+                        <p>Minimal edition</p>
+
+                    </div>
+
+                    <div class="object-card">
+
+                        <div class="object-card-visual">
+                            <span></span>
+                        </div>
+
+                        <h3>Object 02</h3>
+                        <p>Studio edition</p>
+
+                    </div>
+
+                    <div class="object-card">
+
+                        <div class="object-card-visual">
+                            <span></span>
+                        </div>
+
+                        <h3>Object 03</h3>
+                        <p>Limited edition</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                style="
+                    padding:70px 8%;
+                    background:#171717;
+                    color:white;
+                "
+            >
+
+                <h2 style="font:500 45px Manrope;">
+                    Designed for everyday life.
+                </h2>
+
+                <p
+                    style="
+                        color:#999;
+                        max-width:600px;
+                        line-height:1.8;
+                        margin-top:20px;
+                    "
+                >
+                    Concepto de tienda online que demuestra cómo una
+                    página puede presentar productos de manera limpia,
+                    elegante y enfocada en la compra.
+                </p>
+
+            </div>
+
+            <div class="demo-footer">
+
+                <div>
+                    <strong>OBJECT 01</strong>
+                    <p>Commerce concept.</p>
+                </div>
+
+                <div>
+                    <p>Shop · Collection · Studio</p>
+                </div>
+
+            </div>
+
+        </div>
+        `
+    }
+
+};
+
+
+/* ================================
+   OPEN PROJECT
+================================ */
+
+document.querySelectorAll(".project-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const id = button.dataset.project;
+        const project = projectData[id];
+
+        if(!project) return;
+
+        modalName.textContent = project.name;
+        previewContent.innerHTML = project.html;
+
+        projectModal.classList.add("active");
+        document.body.classList.add("modal-open");
+
+        previewContent.scrollTop = 0;
+
+    });
+
+});
+
+
+/* ================================
+   CLOSE PROJECT
+================================ */
+
+document.getElementById("closeProject").addEventListener("click", closeProject);
+
+projectModal.addEventListener("click", e => {
+
+    if(e.target === projectModal){
+        closeProject();
+    }
+
+});
+
+function closeProject(){
+
+    projectModal.classList.remove("active");
+    document.body.classList.remove("modal-open");
+
+}
+
+
+/* ================================
+   ESCAPE
+================================ */
+
+document.addEventListener("keydown", e => {
+
+    if(e.key === "Escape"){
+
+        closeProject();
+        closeLegal();
+
+    }
+
+});
+
+
+/* ================================
+   CONTACT WHATSAPP
+================================ */
+
+document.getElementById("contactForm").addEventListener("submit", e => {
+
+    e.preventDefault();
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const business =
+        document.getElementById("business").value.trim();
+
+    const message =
+        document.getElementById("message").value.trim();
+
+    const text =
+`Hola, quiero información sobre una página web.
+
+Nombre: ${name}
+Negocio: ${business || "No especificado"}
+
+Proyecto:
+${message}`;
+
+    const url =
+        "https://wa.me/525668020227?text=" +
+        encodeURIComponent(text);
+
+    window.open(url,"_blank");
+
+});
+
+
+/* ================================
+   LEGAL
+================================ */
+
+const legalModal = document.getElementById("legalModal");
+const legalContent = document.getElementById("legalContent");
+
+document.querySelectorAll("[data-legal]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const type = button.dataset.legal;
+
+        if(type === "privacy"){
+
+            legalContent.innerHTML = `
+
+                <h2>Política de privacidad</h2>
+
+                <p>
+                    Este sitio es una página informativa y de presentación
+                    de servicios de diseño web.
+                </p>
+
+                <p>
+                    Los datos que una persona escriba en el formulario
+                    de contacto se utilizan únicamente para preparar
+                    el mensaje que será enviado mediante WhatsApp.
+                </p>
+
+                <p>
+                    No se solicita ni almacena información bancaria,
+                    contraseñas u otra información sensible mediante
+                    este sitio.
+                </p>
+
+            `;
+
+        }else{
+
+            legalContent.innerHTML = `
+
+                <h2>Aviso legal</h2>
+
+                <p>
+                    Los proyectos mostrados en esta página están
+                    identificados como conceptos o demos y tienen
+                    únicamente una finalidad demostrativa.
+                </p>
+
+                <p>
+                    Los nombres, marcas, datos y ejemplos utilizados
+                    en los conceptos son ficticios y no representan
+                    necesariamente clientes reales.
+                </p>
+
+                <p>
+                    El contenido de esta página puede actualizarse
+                    para incorporar nuevos proyectos y servicios.
+                </p>
+
+            `;
+
+        }
+
+        legalModal.classList.add("active");
+        document.body.classList.add("modal-open");
+
+    });
+
+});
+
+
+document.getElementById("closeLegal").addEventListener("click", closeLegal);
+
+legalModal.addEventListener("click", e => {
+
+    if(e.target === legalModal){
+        closeLegal();
+    }
+
+});
+
+function closeLegal(){
+
+    legalModal.classList.remove("active");
+    document.body.classList.remove("modal-open");
+
+}
+
+</script>
+
+</body>
+</html>
